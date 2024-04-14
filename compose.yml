@@ -28,10 +28,13 @@ services:
     image: quay.io/keycloak/keycloak:24.0.2
     volumes:
       - keycloak_data:/opt/keycloak/data:rw
+      - ./keycloak/import:/opt/keycloak/data/import:rw
     env_file:
       - keycloak/.env
       - keycloak/.env.local
-    command: start-dev
+    # export sample realm
+    # command: export --realm sample --dir /opt/keycloak/data/import/ --users same_file
+    command: start-dev --import-realm
   sample:
     image: ghcr.io/mitarothanken/haproxy-with-minica/devcontainers/typescript-node-with-java:20240316-1041
     volumes:
