@@ -1,2 +1,2 @@
 #!/bin/bash
-devcontainer build --workspace-folder typescript-node-with-java/ --image-name ghcr.io/mitarothanken/haproxy-with-minica/devcontainers/typescript-node-with-java:"$(date +%Y%m%d-%H%M)"
+devcontainer build --workspace-folder python-with-java-and-node/ --image-name ghcr.io/mitarothanken/try-fastapi-keycloak/devcontainers/python-with-java-and-node:"$(date +%Y%m%d-%H%M)"
