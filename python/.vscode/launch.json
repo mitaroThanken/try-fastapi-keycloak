@@ -15,6 +15,9 @@
                 "--host",
                 "0.0.0.0"
             ],
+            "env": {
+                "REQUESTS_CA_BUNDLE": "/workspaces/certs/minica.crt"
+            },
             "jinja": true
         }
     ]
