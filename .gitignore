@@ -2,3 +2,6 @@
 certs/**/*
 !certs/Dockerfile
 !certs/.dockerignore
+
+# KeyCloak
+keycloak/.env.local

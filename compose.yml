@@ -22,8 +22,16 @@ services:
         protocol: tcp
         mode: host
     depends_on:
+      - keycloak
       - sample
-      - sample2
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.2
+    volumes:
+      - keycloak_data:/opt/keycloak/data:rw
+    env_file:
+      - keycloak/.env
+      - keycloak/.env.local
+    command: start-dev
   sample:
     image: ghcr.io/mitarothanken/haproxy-with-minica/devcontainers/typescript-node-with-java:20240316-1041
     volumes:
@@ -31,8 +39,5 @@ services:
     environment:
       - VHOST_FQDN=${VHOST_NAME:-test}.test
     command: /bin/sh -c "while sleep 1000; do :; done"
-  sample2:
-    image: haproxy-with-minica/sample2
-    build:
-      context: ./sample2
-    command: /bin/sh -c "while sleep 1000; do :; done"
+volumes:
+  keycloak_data:
