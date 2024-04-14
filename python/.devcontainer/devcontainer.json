@@ -16,9 +16,13 @@
 				"SonarSource.sonarlint-vscode",
 				"mhutchie.git-graph",
 				"eamodio.gitlens"
-			]
+			],
+			"settings": {
+				"python.analysis.typeCheckingMode": "strict",
+				"python.analysis.autoImportCompletions": true
+			}
 		}
-	},
+	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
