@@ -23,7 +23,7 @@ services:
         mode: host
     depends_on:
       - keycloak
-      - sample
+      - python
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.2
     volumes:
@@ -35,13 +35,6 @@ services:
     # export sample realm
     # command: export --realm sample --dir /opt/keycloak/data/import/ --users same_file
     command: start-dev --import-realm
-  sample:
-    image: ghcr.io/mitarothanken/haproxy-with-minica/devcontainers/typescript-node-with-java:20240316-1041
-    volumes:
-      - .:/workspaces:cached
-    environment:
-      - VHOST_FQDN=${VHOST_NAME:-test}.test
-    command: /bin/sh -c "while sleep 1000; do :; done"
   python:
     image: ghcr.io/mitarothanken/try-fastapi-keycloak/devcontainers/python-with-java-and-node:20240414-0543
     volumes:
