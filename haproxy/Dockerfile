@@ -1,7 +1,7 @@
 # HAProxy version
 ARG HAPROXY_VERSION=2.8
 
-FROM haproxy-with-minica/certs:latest as certs
+FROM try-fastapi-keycloak/certs:latest as certs
 
 FROM haproxy:${HAPROXY_VERSION} AS haproxy
 

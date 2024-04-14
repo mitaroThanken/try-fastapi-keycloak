@@ -1,6 +1,6 @@
 services:
   haproxy:
-    image: haproxy-with-minica/haproxy
+    image: try-fastapi-keycloak/haproxy
     build:
       context: ./haproxy
       target: haproxy
