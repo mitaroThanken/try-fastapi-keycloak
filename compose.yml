@@ -29,18 +29,25 @@ services:
     volumes:
       - keycloak_data:/opt/keycloak/data:rw
       - ./keycloak/import:/opt/keycloak/data/import:rw
+      - ./certs/${VHOST_NAME:-test}.test:/certs:ro
     env_file:
       - keycloak/.env
       - keycloak/.env.local
     # export sample realm
     # command: export --realm sample --dir /opt/keycloak/data/import/ --users same_file
-    command: start-dev --import-realm
+    command: >-
+      start-dev
+      --import-realm
+      --https-certificate-file=/certs/cert.pem
+      --https-certificate-key-file=/certs/key.pem
+      --http-port=80
+      --https-port=443
   python:
     image: ghcr.io/mitarothanken/try-fastapi-keycloak/devcontainers/python-with-java-and-node:20240414-0543
     volumes:
       - .:/workspaces:cached
     environment:
       - VHOST_FQDN=${VHOST_NAME:-test}.test
-    command: /bin/sh -c "while sleep 1000; do :; done"
+    command: sleep infinity
 volumes:
   keycloak_data:
