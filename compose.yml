@@ -42,5 +42,12 @@ services:
     environment:
       - VHOST_FQDN=${VHOST_NAME:-test}.test
     command: /bin/sh -c "while sleep 1000; do :; done"
+  python:
+    image: ghcr.io/mitarothanken/try-fastapi-keycloak/devcontainers/python-with-java-and-node:20240414-0543
+    volumes:
+      - .:/workspaces:cached
+    environment:
+      - VHOST_FQDN=${VHOST_NAME:-test}.test
+    command: /bin/sh -c "while sleep 1000; do :; done"
 volumes:
   keycloak_data:
